@@ -64,11 +64,10 @@
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config(); // For environment variables
 
 const app = express();
 app.use(express.json());
