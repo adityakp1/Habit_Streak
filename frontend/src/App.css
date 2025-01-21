@@ -82,7 +82,7 @@ body {
 }
 
 .attendance-button {
-  background-color: #4CAF50;
+  background-color: #429b45;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -91,7 +91,7 @@ body {
 }
 
 .attendance-button:hover {
-  background-color: #45a049;
+  background-color: #58ab5d !important;
 }
 
 .heatmap-container {
@@ -104,15 +104,14 @@ body {
 }
 
 .color-github-1 {
-  fill: #00FF00;  /* Dark green color for the heatmap */
-  stroke: #2E2E2E;  /* Dark border for the heatmap cells */
+  fill: #09c400e3 !important;  /* Dark green color for the heatmap */
   stroke-width: 1;
 }
 
 .color-empty {
-  fill: #444;
-  stroke: #555;  /* Light border for the empty cells */
-  stroke-width: 1;
+  fill: #383838 !important;
+    stroke: #656565 !important;
+    stroke-width: .7 !important;
 }
 
 /* Responsive styling */
