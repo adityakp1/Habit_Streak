@@ -134,7 +134,7 @@ body {
   }
 
   .react-calendar-heatmap {
-    width: 700px;  /* Adjust width for smaller screens */
+    width: 60px;  /* Adjust width for smaller screens */
     overflow-x: scroll;
   }
 }
