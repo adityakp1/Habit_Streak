@@ -104,8 +104,9 @@ body {
 }
 
 .color-github-1 {
-  fill: #09c400e3 !important;  /* Dark green color for the heatmap */
-  stroke-width: 1;
+  fill: #0ac400e2 !important;  /* Dark green color for the heatmap */
+  stroke: #555;
+  stroke-width: 0.85px;
 }
 
 .color-empty {
@@ -133,7 +134,7 @@ body {
   }
 
   .react-calendar-heatmap {
-    width: 600px;  /* Adjust width for smaller screens */
+    width: 700px;  /* Adjust width for smaller screens */
     overflow-x: scroll;
   }
 }
