@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css';
-import './App.css'; // Import the CSS file for styling
+import './App.css';  // Import the CSS file for styling
 
 const App = () => {
   const [user, setUser] = useState('');
@@ -12,11 +12,10 @@ const App = () => {
   const [newHabit, setNewHabit] = useState('');
 
   const fetchHabits = (user) => {
-    console.log('Fetching habits for user:', user); // Debug log
-    axios.get('https://habit-streak-backend-3hfx.vercel.app/api/habits', { params: { user } })
+    axios.get('http://localhost:5000/api/habits', { params: { user } })
       .then(response => {
-        console.log('Fetched Habits:', response.data); // Log fetched habits
-        setHabits(response.data); // Update habits state
+        console.log('Fetched Habits:', response.data);
+        setHabits(response.data);
       })
       .catch(error => {
         console.error('Error fetching habits:', error);
@@ -25,7 +24,7 @@ const App = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      fetchHabits(user); // Fetch habits for the logged-in user
+      fetchHabits(user);
 
       // Set the attendance date to today's date
       const today = new Date().toISOString().split('T')[0];
@@ -36,13 +35,12 @@ const App = () => {
   const handleLogin = () => {
     if (user) {
       setIsAuthenticated(true);
-      setHabits([]); // Clear previous habits when logging in with a new user
     }
   };
 
   const handleAddHabit = () => {
     if (newHabit) {
-      axios.post('https://habit-streak-backend-3hfx.vercel.app/api/habits', {
+      axios.post('http://localhost:5000/api/habits', {
         user,
         name: newHabit,
       })
@@ -57,7 +55,7 @@ const App = () => {
   };
 
   const markAttendance = (habitId) => {
-    axios.post('https://habit-streak-backend-3hfx.vercel.app/api/habits/attendance', {
+    axios.post('http://localhost:5000/api/habits/attendance', {
       id: habitId,
       date: attendanceDate
     })
@@ -67,7 +65,7 @@ const App = () => {
         habit.id === response.data.id ? response.data : habit
       ));
       const today = new Date().toISOString().split('T')[0];
-      setAttendanceDate(today);
+      setAttendanceDate(today);  // Set the attendance date to today's date after marking attendance
     })
     .catch(error => {
       console.error('Error marking attendance:', error);
@@ -101,18 +99,10 @@ const App = () => {
             />
             <button onClick={handleAddHabit} className="button">Add Habit</button>
           </div>
-          {habits.map((habit) => (
-            // Conditionally render or hide habit `div` based on user match
-            <div
-              key={habit.id}
-              className="habit-card"
-              style={{
-                display: habit.user === user ? 'block' : 'none', // Hide if user does not match
-              }}
-            >
-            {/* <div key={habit.id} className="habit-card"> */}
+          {habits.map(habit => (
+            <div key={habit.id} className="habit-card">
               <h2 className="habit-name">{habit.name}</h2>
-              <p className="habit-progress">User: <strong>{habit.user}</strong></p>
+              <p className="habit-progress">User: {habit.user}</p>
               <p className="habit-progress">Progress: {habit.progress}</p>
               <div className="attendance-form">
                 <h3 className="attendance-title">Mark Attendance</h3>
@@ -130,7 +120,7 @@ const App = () => {
                   endDate={new Date()}
                   values={habit.attendance.map(date => ({ date }))}
                   classForValue={(value) => (value ? 'color-github-1' : 'color-empty')}
-                  className="heatmap"
+                  className="heatmap"  // Apply CSS class
                 />
               </div>
             </div>
