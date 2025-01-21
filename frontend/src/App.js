@@ -116,7 +116,7 @@ const App = () => {
               </div>
               <div className="heatmap-container">
                 <CalendarHeatmap
-                  startDate={new Date(new Date().setFullYear(new Date().getFullYear() - 1))}
+                  startDate={new Date(new Date().getFullYear(), 0, 1)}
                   endDate={new Date()}
                   values={habit.attendance.map(date => ({ date }))}
                   classForValue={(value) => (value ? 'color-github-1' : 'color-empty')}
