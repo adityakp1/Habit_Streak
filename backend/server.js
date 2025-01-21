@@ -80,9 +80,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Fetch all habits for a user
-app.get('/habits', async (req, res) => {
-  const { user } = req.query; // User ID from query parameters
+// Routes (same as before)
+app.get('/api/habits', async (req, res) => {
+  const { user } = req.query;
   try {
     const snapshot = await db.collection('habits').where('user', '==', user).get();
     const habits = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -93,8 +93,7 @@ app.get('/habits', async (req, res) => {
   }
 });
 
-// Add a new habit
-app.post('/habits', async (req, res) => {
+app.post('/api/habits', async (req, res) => {
   const newHabit = {
     user: req.body.user,
     name: req.body.name,
@@ -111,35 +110,5 @@ app.post('/habits', async (req, res) => {
   }
 });
 
-// Update habit attendance
-app.post('/habits/attendance', async (req, res) => {
-  const { id, date } = req.body;
-
-  try {
-    const docRef = db.collection('habits').doc(id);
-    const habit = await docRef.get();
-
-    if (!habit.exists) {
-      return res.status(404).json({ message: 'Habit not found' });
-    }
-
-    const habitData = habit.data();
-    if (!habitData.attendance.includes(date)) {
-      habitData.attendance.push(date);
-      habitData.progress = habitData.attendance.length;
-
-      await docRef.update(habitData);
-    }
-
-    res.status(200).json({ id, ...habitData });
-  } catch (error) {
-    console.error('Error updating attendance:', error);
-    res.status(500).json({ message: 'Failed to update attendance' });
-  }
-});
-
-// Default port for Vercel or local testing
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-module.exports = app; // Export app for serverless environments like Vercel
+// Export the app as a serverless handler
+module.exports = app;  // This is the important change for Vercel deployment
