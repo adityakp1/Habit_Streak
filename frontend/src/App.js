@@ -12,7 +12,7 @@ const App = () => {
   const [newHabit, setNewHabit] = useState('');
 
   const fetchHabits = (user) => {
-    axios.get('https://habit-streak-1.onrender.com/api/habits', { params: { user } })
+    axios.get('https://habit-streak-2.onrender.com/api/habits', { params: { user } })
       .then(response => {
         console.log('Fetched Habits:', response.data);
         setHabits(response.data);
@@ -40,7 +40,7 @@ const App = () => {
 
   const handleAddHabit = () => {
     if (newHabit) {
-      axios.post('https://habit-streak-1.onrender.com/api/habits', {
+      axios.post('https://habit-streak-2.onrender.com/api/habits', {
         user,
         name: newHabit,
       })
@@ -55,7 +55,7 @@ const App = () => {
   };
 
   const markAttendance = (habitId) => {
-    axios.post('https://habit-streak-1.onrender.com/api/habits/attendance', {
+    axios.post('https://habit-streak-2.onrender.com/api/habits/attendance', {
       id: habitId,
       date: attendanceDate
     })
