@@ -55,11 +55,11 @@ body {
 }
 
 .habit-name {
-  color: #CFCFCF;
+  color: whitesmoke;
 }
 
 .habit-progress {
-  color: #B0B0B0;
+  color: rgb(206, 204, 204);
 }
 
 .attendance-form {
@@ -69,7 +69,7 @@ body {
 .attendance-title {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #8F8F8F;
+  color: rgb(206, 204, 204);
 }
 
 .date-input {
