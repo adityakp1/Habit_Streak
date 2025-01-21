@@ -81,7 +81,7 @@ app.use(express.json());
 app.use(cors());
 
 // Fetch all habits for a user
-app.get('/api/habits', async (req, res) => {
+app.get('/habits', async (req, res) => {
   const { user } = req.query; // User ID from query parameters
   try {
     const snapshot = await db.collection('habits').where('user', '==', user).get();
@@ -94,7 +94,7 @@ app.get('/api/habits', async (req, res) => {
 });
 
 // Add a new habit
-app.post('/api/habits', async (req, res) => {
+app.post('/habits', async (req, res) => {
   const newHabit = {
     user: req.body.user,
     name: req.body.name,
@@ -112,7 +112,7 @@ app.post('/api/habits', async (req, res) => {
 });
 
 // Update habit attendance
-app.post('/api/habits/attendance', async (req, res) => {
+app.post('/habits/attendance', async (req, res) => {
   const { id, date } = req.body;
 
   try {
