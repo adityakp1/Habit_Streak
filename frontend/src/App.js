@@ -13,7 +13,7 @@ const App = () => {
 
   const fetchHabits = (user) => {
     console.log('Fetching habits for user:', user); // Debug log
-    axios.get('http://localhost:5000/api/habits', { params: { user } })
+    axios.get('https://habit-streak-backend-3hfx.vercel.app/api/habits', { params: { user } })
       .then(response => {
         console.log('Fetched Habits:', response.data); // Log fetched habits
         setHabits(response.data); // Update habits state
@@ -42,7 +42,7 @@ const App = () => {
 
   const handleAddHabit = () => {
     if (newHabit) {
-      axios.post('http://localhost:5000/api/habits', {
+      axios.post('https://habit-streak-backend-3hfx.vercel.app/api/habits', {
         user,
         name: newHabit,
       })
@@ -57,7 +57,7 @@ const App = () => {
   };
 
   const markAttendance = (habitId) => {
-    axios.post('http://localhost:5000/api/habits/attendance', {
+    axios.post('https://habit-streak-backend-3hfx.vercel.app/api/habits/attendance', {
       id: habitId,
       date: attendanceDate
     })
